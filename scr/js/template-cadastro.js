@@ -41,15 +41,11 @@ Vue.component('form-livros',{
     </form>'
 });
 
-Vue.component('tabela-livros',{
+Vue.component('tabela-livro',{
     props:['lista'],
     data:{
     },
     methods: {
-        deletar:function(item){
-            console.log(item);
-            this.$emit('deletar', {item:item});      
-        },
     },
     template: '\
     <table class="table">\
@@ -71,8 +67,81 @@ Vue.component('tabela-livros',{
             <td>{{item.autor}}</td>\
             <td>{{item.editora}}</td>\
             <td>{{item.ano}}</td>\
-            <button type="button" class="btn deletar" v-on:click="deletar(item)">Deletar Livro</button>\
-            <button type="button" class="btn editar" v-on:click="editar(item)">Editar Livro</button>\
         </tr>\
     </table>'
 });
+
+Vue.component('tabela-livros',{
+    props:['lista'],
+    data:{
+    },
+    methods: {
+        deletar:function(item){
+            console.log(item);
+            this.$emit('deletar', {item:item});      
+        },
+        editar:function(item){
+            console.log(item);
+            this.$emit('editar', {item:item});
+        }
+    },
+    template: '\
+    <table class="table">\
+        <thead>\
+            <tr>\
+                <th scope="col">ID</th>\
+                <th scope="col">ISBN</th>\
+                <th scope="col">Nome</th>\
+                <th scope="col">Autor</th>\
+                <th scope="col">Editora</th>\
+                <th scope="col">Ano</th>\
+            </tr>\
+        </thead>\
+        <tbody>\
+            <tr v-for="item of lista">\
+                <td>{{item.id}}</td>\
+                <td>{{item.isbn}}</td>\
+                <td>{{item.nome}}</td>\
+                <td>{{item.autor}}</td>\
+                <td>{{item.editora}}</td>\
+                <td>{{item.ano}}</td>\
+                <button type="button" class="btn deletar mr-2" v-on:click="deletar(item)">Deletar Livro</button>\
+                <button type="button" class="btn editar" v-on:click="editar(item)">Editar Livro</button>\
+            </tr>\
+        </tbody>\
+    </table>'
+});
+
+Vue.component('topo',{
+    data:{ 
+    },
+    template: '\
+    <nav class="navbar navbar-expand-lg navbar-light">\
+  <a class="navbar-brand logo" href="#">Biblioteca</a>\
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">\
+    <span class="navbar-toggler-icon"></span>\
+  </button>\
+    \
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">\
+    <ul class="navbar-nav mr-auto">\
+      <li class="nav-item active">\
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>\
+      </li>\
+      <li class="nav-item">\
+        <a class="nav-link" href="#">Cadastrar Livros</a>\
+      </li>\
+      <li class="nav-item">\
+        <a class="nav-link" href="#">Alterar Livros</a>\
+      </li>\
+    </ul>\
+  </div>\
+</nav>'
+});
+
+// Vue.component('rodape',{
+//     data:{ 
+//     },
+//     template: '\
+//       <p>©Biblioteca Virtual - Thatiely Stober Appelt</p>\
+//     '
+// });

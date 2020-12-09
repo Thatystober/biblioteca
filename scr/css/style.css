@@ -13,13 +13,16 @@ thead tr th{
 }
 .adicionar,
 .limpar,
-.deletar{
+.deletar,
+.editar{
     color: #fff;
     background: #4a67df;
+    padding: .1rem .5rem;
 }
 .adicionar:hover,
 .limpar:hover,
-.deletar:hover{
+.deletar:hover,
+.editar:hover{
     color: #7bf3eb;
 }
 
@@ -27,8 +30,32 @@ thead tr th{
    color: red;
 }
 
+.topo {
+    background: #2fd6cb;
+    border-bottom: 2px solid #4a67df;
+}
 
-/* .topo{
-    background-image: url('https://uploads.metropoles.com/wp-content/uploads/2020/01/08171741/livros1.jpg');
-    background-repeat: no-repeat;
+.logo{
+    color: #fff!important;
+    font-weight: 700;
+}
+
+a.nav-link {
+    color: #ffff!important;
+}
+
+a.nav-link:hover{
+    color: #4a67df!important;
+}
+
+/* .footer {
+    padding: 8rem;
+    padding-bottom: 0;
+    font-size: 12px;
+    background: #fff;
+    border-top: 2px solid #4a67df;
+}
+
+.footer p {
+    margin: 0;
 } */

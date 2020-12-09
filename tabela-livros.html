@@ -8,14 +8,14 @@
     <title>Cadastro de Livros</title>
 </head>
 <body>
-    <div id="cadastro-livros">
+    
+    <div id="livros">
         <div class="topo mb-5">
             <topo></topo>
         </div>
         <div class="container">
-            <p class="text-center">Cadastre os livros</p>
-            <form-livros :livro='novoLivro' v-on:salvar="addLivro"></form-livros>
-            <tabela-livro :lista='livros'></tabela-livro>
+            <p class="text-center mb-3">Alterar dados dos Livros</p>
+            <tabela-livros :lista='livros' v-on:deletar="dtLivro" v-on:editar="editarLivro" ></tabela-livros>
         </div>
         <!-- <div class="footer">
             <rodape></rodape>
