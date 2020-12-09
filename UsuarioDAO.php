@@ -52,7 +52,7 @@ class UsuarioDAO{
         $c->bindParam(":nome",$usuario->nome);
         $c->bindParam(":email",$usuario->email);
         $c->bindParam(":senha",$usuario->senha);
-        $c->bindParam(":ano",$usuario->ano);
+        $c->bindParam(":id",$usuario->id);
         $c->execute();  
 
     }

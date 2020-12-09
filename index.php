@@ -10,7 +10,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 $app = AppFactory::create();
 
-// $app->post('/api/usuarios', "UsuarioController:inserir");
+// $app->post('/api/usuarios', "UsuarioController::class:inserir");
 
 $app->group('/api/livros', function($app){
 
@@ -20,9 +20,9 @@ $app->group('/api/livros', function($app){
     $app->put('/{id}', 'LivrosController:atualizar');
     $app->delete('/{id}', 'LivrosController:deletar');
 });
-// ->add('UsuarioController:validarToken');
+// ->add('UsuarioController::class:validarToken');
 
-// $app->post('/api/login', "UsuarioController:autenticar");
+// $app->post('/api/login', "UsuarioController::class:autenticar");
 
 $app->run();
 

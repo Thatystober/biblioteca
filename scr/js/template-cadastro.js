@@ -1,4 +1,4 @@
-Vue.component('form-livros',{
+var Cadastro = Vue.component('form-livros',{
     props:['livro'],
     data:{ 
     },
@@ -71,7 +71,7 @@ Vue.component('tabela-livro',{
     </table>'
 });
 
-Vue.component('tabela-livros',{
+var Atualizar = Vue.component('tabela-livros',{
     props:['lista'],
     data:{
     },
@@ -125,23 +125,23 @@ Vue.component('topo',{
   <div class="collapse navbar-collapse" id="navbarSupportedContent">\
     <ul class="navbar-nav mr-auto">\
       <li class="nav-item active">\
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>\
+        <a class="nav-link">Home <span class="sr-only">(current)</span></a>\
       </li>\
       <li class="nav-item">\
-        <a class="nav-link" href="#">Cadastrar Livros</a>\
+        <a class="nav-link">Cadastrar Livros</a>\
       </li>\
       <li class="nav-item">\
-        <a class="nav-link" href="#">Alterar Livros</a>\
+        <a class="nav-link">Alterar Livros</a>\
       </li>\
     </ul>\
   </div>\
 </nav>'
 });
 
-// Vue.component('rodape',{
-//     data:{ 
-//     },
-//     template: '\
-//       <p>©Biblioteca Virtual - Thatiely Stober Appelt</p>\
-//     '
+// var router = new VueRouter({
+//     routes: [
+//       {path: '/tabela-livros', component: Atualizar},
+//       {path: '/cadastro-livros', component: Cadastro}
+//     ]
 // });
+

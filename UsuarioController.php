@@ -7,9 +7,9 @@
     include_once 'UsuarioDAO.php';
 
     class UsuarioController{
-        private $key = '5667';
+        private $secretKey = 'sen@c';
 
-        public function inserir(Request $request, Response $response, $args){
+        public function inserir($request, $response, $args){
             $body = $request->getParseBody();
 
             $usuario = new Usuario(0, $body['matricula'], $body['nome'], $body['email'], $body['senha']);
@@ -20,18 +20,18 @@
             return $response->withJson($usuario,201);
         }
 
-        public function autenticar(Request $request, Response $response, $args){
-            $body = $request->getParsedBody();
+        public function autenticar($request, $response, $args){
+            $user = $request->getParsedBody();
 
             $dao = new UsuarioDAO;
-            $usuario = $dao->buscarPorLogin($body['email']);
-            if($usuario->senha == $body['senha']){
+            $usuario = $dao->buscarPorLogin($user['email']);
+            if($usuario->senha == $user['senha']){
                 $token = array(
                     'user' => strval($usuario->id),
                     'nome' => $usuario->nome
                 );
 
-                $jwt = JWT::encode($token, $this->key);
+                $jwt = JWT::encode($token, $this->secretKey);
                 return $response->withJson(['token' =>$jwt, 201])
                                 ->withHeader('Content-Type', 'application/json');
             }else{
@@ -39,17 +39,17 @@
             }
         }
 
-        public function validarToken(Request $resquest, $handler){
+        public function validarToken($resquest, $handler){
 
             $response = new Response();
             $token = $request->getHeader('Authorization');
 
             if($token && $token[0]){
                 try {
-                    $decoded = JWT::decode($token[0], $this->key, array('HS256'));
+                    $decoded = JWT::decode($token[0], $this->secretKey, array('HS256'));
 
                     if($decoded){
-                        $response = $handler($request);
+                        $response = $handler->handle($request);
                         return $response;
                     } 
 
