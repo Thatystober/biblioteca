@@ -34,6 +34,7 @@ var app2 = new Vue({
     data: {
         novoLivro: {},
         livros:[],
+        busca: '',
     },
     methods:{
         refresh: function(){
@@ -67,9 +68,46 @@ var app2 = new Vue({
             });
         } 
     },
-    
     created: function(){
-        console.log("Iniciando...")
         this.refresh();
+    },
+    computed:{
+        lista: function(){
+            return this.livros.filter((item) =>{
+                return item.nome.match(this.busca);
+            })
+        }
     }
 });
+
+var app3 = new Vue({
+    el: '#home',
+    data () {
+      return {
+        cep: '',
+        response: null,
+        baseUrl: 'https://viacep.com.br/ws/'
+      }
+    },
+    methods:{
+        getCep () {
+            const url = `${this.baseUrl}${this.cep}/json/`
+            axios.get(url).then(resp => {
+              const data = resp.data
+              if (!data.erro) {
+                this.response = data
+              } else {
+                alert('Cep não encontrado')
+              }
+            }).catch(error => {
+              console.error(error)
+            })
+          }
+        },
+        watch: {
+          cep: function (novoCep, velhoCep) {
+            if (novoCep.length === 8) this.getCep()
+            else this.response = null
+        }
+    }
+})

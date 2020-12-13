@@ -1,4 +1,4 @@
-var Cadastro = Vue.component('form-livros',{
+Vue.component('form-livros',{
     props:['livro'],
     data:{ 
     },
@@ -71,7 +71,7 @@ Vue.component('tabela-livro',{
     </table>'
 });
 
-var Atualizar = Vue.component('tabela-livros',{
+Vue.component('tabela-livros',{
     props:['lista'],
     data:{
     },
@@ -86,30 +86,18 @@ var Atualizar = Vue.component('tabela-livros',{
         }
     },
     template: '\
-    <table class="table">\
-        <thead>\
-            <tr>\
-                <th scope="col">ID</th>\
-                <th scope="col">ISBN</th>\
-                <th scope="col">Nome</th>\
-                <th scope="col">Autor</th>\
-                <th scope="col">Editora</th>\
-                <th scope="col">Ano</th>\
-            </tr>\
-        </thead>\
-        <tbody>\
-            <tr v-for="item of lista">\
-                <td>{{item.id}}</td>\
-                <td>{{item.isbn}}</td>\
-                <td>{{item.nome}}</td>\
-                <td>{{item.autor}}</td>\
-                <td>{{item.editora}}</td>\
-                <td>{{item.ano}}</td>\
-                <button type="button" class="btn deletar mr-2" v-on:click="deletar(item)">Deletar Livro</button>\
-                <button type="button" class="btn editar" v-on:click="editar(item)">Editar Livro</button>\
-            </tr>\
-        </tbody>\
-    </table>'
+      <div class="cards-livros mt-4">\
+        <div class="card-body" v-for="item of lista ">\
+          <h5 class="card-title">{{item.nome}}</h5>\
+          <p class="card-text">ISBN: {{item.isbn}}</p>\
+          <p class="card-text">Autor: {{item.autor}}</p>\
+          <p class="card-text">Editora: {{item.editora}}</p>\
+          <p class="card-text">Ano: {{item.ano}}</p>\
+          <button type="button" class="btn deletar mr-2" v-on:click="deletar(item)">Deletar Livro</button>\
+          <button type="button" class="btn editar" v-on:click="editar(item)">Editar Livro</button>\
+        </div>\
+    </div>\
+    '
 });
 
 Vue.component('topo',{
@@ -124,24 +112,18 @@ Vue.component('topo',{
     \
   <div class="collapse navbar-collapse" id="navbarSupportedContent">\
     <ul class="navbar-nav mr-auto">\
-      <li class="nav-item active">\
-        <a class="nav-link">Home <span class="sr-only">(current)</span></a>\
-      </li>\
+      <li class="nav-item">\
+        <a class="nav-link">Endereço</a>\
+     </li>\
       <li class="nav-item">\
         <a class="nav-link">Cadastrar Livros</a>\
       </li>\
       <li class="nav-item">\
-        <a class="nav-link">Alterar Livros</a>\
+        <a class="nav-link">Livros</a>\
       </li>\
     </ul>\
   </div>\
 </nav>'
 });
 
-// var router = new VueRouter({
-//     routes: [
-//       {path: '/tabela-livros', component: Atualizar},
-//       {path: '/cadastro-livros', component: Cadastro}
-//     ]
-// });
 
