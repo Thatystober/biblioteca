@@ -15,7 +15,7 @@
         </div>
         <div class="container">
             <input type="text" v-model="busca" class="form-control"  placeholder="Procure um livro"/>  
-            <tabela-livros :lista='livros' v-on:deletar="dtLivro" v-on:editar="editarLivro" ></tabela-livros>
+            <tabela-livros :lista='lista' v-on:deletar="dtLivro" v-on:editar="editarLivro" ></tabela-livros>
         </div>
     </div>
 </body>

@@ -66,10 +66,7 @@ var app2 = new Vue({
                     this.sucesso = 'Registro editado com sucesso'
                     this.refresh();
             });
-        } 
-    },
-    created: function(){
-        this.refresh();
+        }
     },
     computed:{
         lista: function(){
@@ -77,7 +74,10 @@ var app2 = new Vue({
                 return item.nome.match(this.busca);
             })
         }
-    }
+    },
+    created: function(){
+        this.refresh();
+    },
 });
 
 var app3 = new Vue({
