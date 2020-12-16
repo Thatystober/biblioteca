@@ -1,4 +1,4 @@
-Vue.component('form-livros',{
+const cadastro = Vue.component('form-livros',{
     props:['livro'],
     data:{ 
     },
@@ -71,7 +71,7 @@ Vue.component('tabela-livro',{
     </table>'
 });
 
-Vue.component('tabela-livros',{
+const tabela = Vue.component('tabela-livros',{
     props:['lista'],
     data:{
     },
@@ -126,4 +126,11 @@ Vue.component('topo',{
 </nav>'
 });
 
+// const routes = [
+//   { path: '/cadastro', component: cadastro},
+//   { path: '/lista', component: tabela}
+// ]
 
+// const router = new VueRouter({
+//   routes // short for `routes: routes`
+// })
