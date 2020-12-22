@@ -1,4 +1,4 @@
-const cadastro = Vue.component('form-livros',{
+Vue.component('form-livros',{
     props:['livro'],
     data:{ 
     },
@@ -71,33 +71,50 @@ Vue.component('tabela-livro',{
     </table>'
 });
 
-const tabela = Vue.component('tabela-livros',{
-    props:['lista'],
-    data:{
-    },
-    methods: {
-        deletar:function(item){
-            console.log(item);
-            this.$emit('deletar', {item:item});      
-        },
-        editar:function(item){
-            console.log(item);
-            this.$emit('editar', {item:item});
+
+Vue.component('tabela-livros',{
+  props:['item'],
+  data: function() {
+    return {
+      disabled: false,
+      text: "Editar Livro"
+    }
+},
+  methods: {
+      deletar:function(item){
+          console.log(item);
+          this.$emit('deletar', {item:item});      
+      },
+      editarLivro:function(e){
+        e.preventDefault();
+        if(this.disabled){
+          console.log(this.item.nome);
+          axios
+            .put('/api/livros/' + this.item.id, this.item)
+             .then(response => {
+                console.log(response);
+              });
+          this.disabled = false;
+          this.text = "Editar Livro";
+        }else{
+          this.disabled = true;
+          this.text = "Salvar";
         }
-    },
-    template: '\
-      <div class="cards-livros mt-4">\
-        <div class="card-body" v-for="item of lista ">\
-          <h5 class="card-title">{{item.nome}}</h5>\
-          <p class="card-text">ISBN: {{item.isbn}}</p>\
-          <p class="card-text">Autor: {{item.autor}}</p>\
-          <p class="card-text">Editora: {{item.editora}}</p>\
-          <p class="card-text">Ano: {{item.ano}}</p>\
-          <button type="button" class="btn deletar mr-2" v-on:click="deletar(item)">Deletar Livro</button>\
-          <button type="button" class="btn editar" v-on:click="editar(item)">Editar Livro</button>\
-        </div>\
-    </div>\
-    '
+        console.log(this.disabled);
+    }
+  },
+  template:
+    `
+      <form method="post" @submit="editarLivro">
+        <h5 class="card-title"><input :disabled="disabled === false" type="text" v-model="item.nome"/></h5>
+        <p class="card-text">ISBN: <input :disabled="disabled === false" type="text" v-model="item.isbn"/></p>
+        <p class="card-text">Autor: <input :disabled="disabled === false" type="text" v-model="item.autor"/></p>
+        <p class="card-text">Editora: <input :disabled="disabled === false" type="text" v-model="item.editora"/></p>
+        <p class="card-text">Ano: <input :disabled="disabled === false" type="text" v-model="item.ano"/></p>
+        <button type="button" class="btn deletar mr-2" v-on:click="deletar(item)">Deletar Livro</button>
+        <input type="submit" class="btn editar" v-model="text" />
+      </form>
+    `
 });
 
 Vue.component('topo',{
@@ -125,12 +142,3 @@ Vue.component('topo',{
   </div>\
 </nav>'
 });
-
-// const routes = [
-//   { path: '/cadastro', component: cadastro},
-//   { path: '/lista', component: tabela}
-// ]
-
-// const router = new VueRouter({
-//   routes // short for `routes: routes`
-// })

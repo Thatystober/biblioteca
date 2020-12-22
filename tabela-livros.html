@@ -15,13 +15,18 @@
         </div>
         <div class="container">
             <input type="text" v-model="busca" class="form-control"  placeholder="Procure um livro"/>  
-            <tabela-livros :lista='lista' v-on:deletar="dtLivro" v-on:editar="editarLivro" ></tabela-livros>
+            <div class="cards-livros mt-4">
+                <div class="card-body" v-for="item of lista">
+                  <tabela-livros :item="item" v-on:deletar="dtLivro"></tabela-livros>
+                </div>
+            </div>
+            <!-- <tabela-livros :lista='lista'></tabela-livros> -->
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="scr/js/conexao-axios.js"></script>
 <script src="scr/js/template-cadastro.js"></script>
 </html>

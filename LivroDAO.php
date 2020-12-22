@@ -55,8 +55,8 @@ class LivroDAO{
         $c->bindParam(":editora",$livro->editora);
         $c->bindParam(":ano",$livro->ano);
         $c->bindParam(":id",$livro->id);
-        $c->execute();  
 
+        $c->execute();  
     }
 
     public function buscarPorId($id){

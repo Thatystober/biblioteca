@@ -59,3 +59,16 @@ a.nav-link:hover{
     box-shadow: 0px 5px 12px #ccc;
     border-radius: 5px;
 }
+
+.card-body input[type="text"]:disabled {
+    border: 0;
+    padding: 0;
+    color: #000;
+    background: transparent;
+}
+
+.card-body input[type="text"] {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding-left: 11px;
+}

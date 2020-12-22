@@ -56,17 +56,7 @@ var app2 = new Vue({
                     this.refresh();
                 });
         },
-        editarLivro:function(item){
-            axios
-                .put('/api/livros/' + item.item.id)
-                .then(response => {
-                    this.livros.splice(item.item.id, 1)
-                    console.log(item.item.id);
-                    console.log("Response: ",response)
-                    this.sucesso = 'Registro editado com sucesso'
-                    this.refresh();
-            });
-        }
+      
     },
     computed:{
         lista: function(){
